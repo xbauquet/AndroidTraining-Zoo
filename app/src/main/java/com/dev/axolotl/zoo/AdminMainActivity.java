@@ -142,7 +142,6 @@ public class AdminMainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 3;
         }
 
@@ -150,11 +149,11 @@ public class AdminMainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Users";
                 case 1:
-                    return "SECTION 2";
+                    return "Bookings";
                 case 2:
-                    return "SECTION 3";
+                    return "Add admin";
             }
             return null;
         }

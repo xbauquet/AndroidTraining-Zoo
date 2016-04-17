@@ -28,10 +28,15 @@ public class LoginActivity extends AppCompatActivity {
                 AutoCompleteTextView email = (AutoCompleteTextView) findViewById(R.id.login_email);
                 AutoCompleteTextView password = (AutoCompleteTextView) findViewById(R.id.login_password);
 
-                if(email.getText().toString().equals(password.getText().toString())){
-                    Intent intent = new Intent(LoginActivity.this, AdminMainActivity.class);
-                    startActivity(intent);
+
+                Intent intent = null;
+                if(password.getText().toString().equals("admin")){
+                    intent = new Intent(LoginActivity.this, AdminMainActivity.class);
+
+                }else if(password.getText().toString().equals("user")){
+                    intent = new Intent(LoginActivity.this, UserMainActivity.class);
                 }
+                startActivity(intent);
             }
         });
     }
