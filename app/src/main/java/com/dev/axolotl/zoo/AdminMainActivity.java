@@ -19,6 +19,9 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class AdminMainActivity extends AppCompatActivity {
 
     /**
@@ -29,39 +32,31 @@ public class AdminMainActivity extends AppCompatActivity {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private SectionsPagerAdapter sectionsPagerAdapter;
 
     /**
      * The {@link ViewPager} that will host the section contents.
      */
-    private ViewPager mViewPager;
+    @Bind(R.id.container) ViewPager viewPager;
+    @Bind(R.id.tabs) TabLayout tabLayout;
+    @Bind(R.id.toolbar) Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
+        ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        viewPager.setAdapter(sectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(mViewPager);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        tabLayout.setupWithViewPager(viewPager);
 
     }
 
@@ -135,9 +130,15 @@ public class AdminMainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position) {
+                case 0:
+                    return PlaceholderFragment.newInstance(position + 1);
+                case 1:
+                    return PlaceholderFragment.newInstance(position + 1);
+                case 2:
+                    return PlaceholderFragment.newInstance(position + 1);
+            }
+            return null;
         }
 
         @Override

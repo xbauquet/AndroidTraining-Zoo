@@ -5,29 +5,33 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AutoCompleteTextView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class LoginActivity extends AppCompatActivity {
+
+    @Bind(R.id.toolbar) Toolbar toolbar;
+    @Bind(R.id.fab) FloatingActionButton fab;
+    @Bind(R.id.login_email) AutoCompleteTextView email;
+    @Bind(R.id.login_password) AutoCompleteTextView password;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AutoCompleteTextView email = (AutoCompleteTextView) findViewById(R.id.login_email);
-                AutoCompleteTextView password = (AutoCompleteTextView) findViewById(R.id.login_password);
-
 
                 Intent intent = null;
                 if(password.getText().toString().equals("admin")){
